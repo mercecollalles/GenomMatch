@@ -1,0 +1,256 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+.w{font-family:'DM Sans',sans-serif;max-width:380px;margin:0 auto;background:#F7F4FB;min-height:600px;border-radius:32px;overflow:hidden;color:#1a1025;border:1px solid #D8CFF0}
+.sb{background:#F7F4FB;padding:12px 20px 4px;display:flex;justify-content:space-between;font-size:11px;color:#999;font-family:'Space Mono',monospace}
+.sc{padding:18px;display:none}
+.sc.on{display:block;animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.logo{font-family:'Space Mono',monospace;font-size:15px;color:#7B2D8B}
+.logo span{color:#2D8B5A}
+.steps{display:flex;gap:5px;justify-content:center;margin-bottom:20px}
+.dot{width:28px;height:3px;border-radius:2px;background:#DDD6F0;transition:background .3s}
+.dot.on{background:#7B2D8B}.dot.done{background:#2D8B5A}
+.ttl{font-size:19px;font-weight:600;margin-bottom:4px;color:#1a1025}
+.sub{font-size:12px;color:#777;margin-bottom:18px;line-height:1.4}
+input.gi{width:100%;background:#fff;border:0.5px solid #C8BEE8;border-radius:11px;padding:11px 13px;color:#1a1025;font-size:13px;font-family:'DM Sans',sans-serif;margin-bottom:9px;outline:none}
+input.gi:focus{border-color:#7B2D8B}
+input.gi::placeholder{color:#aaa}
+.cat{margin-bottom:16px}
+.cl{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.op{background:#fff;border:0.5px solid #C8BEE8;border-radius:18px;padding:5px 11px;font-size:11px;color:#555;cursor:pointer;transition:all .2s;user-select:none}
+.op:hover{border-color:#7B2D8B;color:#7B2D8B}
+.op.sel{background:#EDE0F5;border-color:#7B2D8B;color:#7B2D8B}
+.op.s{border-color:#E8C87A;color:#8B6A00}
+.op.s.sel{background:#FFF8E0;border-color:#C9950A;color:#7A5C00}
+.op.r{border-color:#E8A0A0;color:#8B2020}
+.op.r.sel{background:#FDECEA;border-color:#C93030;color:#7A1A1A}
+.notice{background:#fff;border:0.5px solid #C8BEE8;border-radius:9px;padding:9px 11px;font-size:10px;color:#888;margin-bottom:14px;line-height:1.5}
+.notice a{color:#7B2D8B;text-decoration:underline;cursor:pointer}
+.btn{width:100%;background:#7B2D8B;border:none;border-radius:13px;padding:13px;color:#fff;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:7px;transition:opacity .2s}
+.btn:hover{opacity:.88}
+.btn2{background:transparent;border:0.5px solid #C8BEE8;color:#888;margin-top:8px}
+.btn2:hover{border-color:#7B2D8B;color:#7B2D8B;opacity:1}
+.scroll{max-height:500px;overflow-y:auto;padding-bottom:8px}
+.scroll::-webkit-scrollbar{width:2px}
+.scroll::-webkit-scrollbar-thumb{background:#C8BEE8;border-radius:2px}
+.pc{background:#fff;border:0.5px solid #DDD6F0;border-radius:18px;overflow:hidden;margin-bottom:12px}
+.pi{width:100%;height:110px;display:flex;align-items:center;justify-content:center;background:#EDE0F5;font-size:48px}
+.pb{padding:13px}
+.pn{font-size:16px;font-weight:600;margin-bottom:1px;color:#1a1025}
+.pa{font-size:11px;color:#999;margin-bottom:9px}
+.bl{margin-bottom:7px}
+.bll{font-size:10px;color:#888;margin-bottom:3px;display:flex;justify-content:space-between}
+.br{height:4px;background:#EDE0F5;border-radius:2px;overflow:hidden}
+.bf{height:100%;border-radius:2px;transition:width 1s ease}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.tg{font-size:9px;padding:2px 7px;border-radius:9px;background:#EDE0F5;color:#5A1A6A}
+.tg.g{background:#E0F5EC;color:#1A6A3A}
+.tg.y{background:#FFF8E0;color:#7A5C00}
+.tg.r{background:#FDECEA;color:#7A1A1A}
+.ar{display:flex;gap:8px;margin-top:9px}
+.ab{flex:1;padding:9px;border-radius:11px;border:0.5px solid #C8BEE8;background:transparent;color:#888;font-size:11px;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .2s}
+.ab.lk{border-color:#2D8B5A;color:#2D8B5A}
+.ab.lk:hover{background:#E0F5EC}
+.ab.ps:hover{border-color:#C93030;color:#8B2020}
+.prem{background:#F7F4FB;border:0.5px solid #C8BEE8;border-radius:11px;padding:10px;margin-top:9px;text-align:center}
+.prem p{font-size:11px;color:#888;margin:3px 0 8px}
+.pbadge{display:inline-block;background:#EDE0F5;border:0.5px solid #7B2D8B;border-radius:18px;padding:3px 10px;font-size:10px;color:#7B2D8B;font-family:'Space Mono',monospace;margin-bottom:6px}
+.blur{filter:blur(3px);pointer-events:none;user-select:none}
+.banner{background:#FFF8E0;border:0.5px solid #E8C87A;border-radius:9px;padding:9px 11px;font-size:10px;color:#7A5C00;margin-bottom:12px;display:flex;gap:7px;align-items:flex-start;line-height:1.4}
+.bnav{display:flex;border-top:0.5px solid #DDD6F0;padding:9px 0 12px;background:#F7F4FB}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:#CCC;font-size:8px;cursor:pointer;transition:color .2s}
+.ni i{font-size:19px}
+.ni.on{color:#7B2D8B}
+.splash{text-align:center;padding:36px 18px}
+.slogo{font-family:'Space Mono',monospace;font-size:26px;color:#7B2D8B;margin-bottom:6px}
+.slogo span{color:#2D8B5A}
+.stag{font-size:12px;color:#999;margin-bottom:28px}
+.warn-box{background:#FDECEA;border:0.5px solid #E8A0A0;border-radius:10px;padding:10px 12px;font-size:11px;color:#7A1A1A;margin-top:10px;line-height:1.5}
+</style>
+
+<h2 class="sr-only">Simulació didàctica de l'aplicació GenomMatch amb càlcul de compatibilitat genètica personalitzat</h2>
+<div class="w">
+  <div class="sb"><span>9:41</span><span style="font-size:13px">●●●●○</span></div>
+
+  <div id="s0" class="sc on">
+    <div class="splash">
+      <div class="slogo">Genom<span>Match</span></div>
+      <div class="stag">Troba la teva compatibilitat genètica perfecta</div>
+      <div style="font-size:52px;margin-bottom:22px">🧬</div>
+      <p style="font-size:12px;color:#999;line-height:1.6;margin-bottom:24px">L'única app que utilitza el teu perfil genètic complet per trobar parelles amb qui construir el millor futur.</p>
+      <button class="btn" onclick="show('s1')">Crea el teu perfil genètic</button>
+      <button class="btn btn2" onclick="guestMode()">Entrar com a convidat/da</button>
+    </div>
+  </div>
+
+  <div id="s1" class="sc">
+    <div class="steps"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+    <div class="ttl">Qui ets?</div>
+    <div class="sub">Comencem amb les dades bàsiques del teu perfil.</div>
+    <input class="gi" id="rname" type="text" placeholder="Nom (pots usar un àlies)" />
+    <input class="gi" id="rage" type="number" placeholder="Edat" min="16" max="99" />
+    <div class="cat">
+      <div class="cl" style="color:#7B2D8B">T'identifiques com...</div>
+      <div class="opts">
+        <div class="op" onclick="one(this,'gender')">Dona</div>
+        <div class="op" onclick="one(this,'gender')">Home</div>
+        <div class="op" onclick="one(this,'gender')">No binari/ària</div>
+        <div class="op" onclick="one(this,'gender')">Prefereixo no dir-ho</div>
+      </div>
+    </div>
+    <div class="notice"><i class="ti ti-lock" aria-hidden="true" style="font-size:11px"></i> Les teves dades seran compartides per millorar l'algoritme de compatibilitat i amb els nostres <a onclick="alert('Gaxio Health Analytics, InsureGen Corp, FutureFamily Ltd i 14 partners més.')">socis tecnològics</a>. Pots gestionar els permisos en qualsevol moment.</div>
+    <button class="btn" onclick="show('s2')">Continua</button>
+  </div>
+
+  <div id="s2" class="sc">
+    <div class="steps"><div class="dot done"></div><div class="dot on"></div><div class="dot"></div></div>
+    <div class="ttl">El teu perfil genètic</div>
+    <div class="sub">Selecciona les dades que vols incloure. Més dades = millors compatibilitats.</div>
+    <div class="scroll" id="optScroll">
+      <div class="cat">
+        <div class="cl" style="color:#2D8B5A">Malalties hereditàries — gen recessiu</div>
+        <div class="opts">
+          <div class="op" data-key="fq_carrier" onclick="tog(this)">Portador/a fibrosi quística</div>
+          <div class="op" data-key="brca" onclick="tog(this)">Gen BRCA1/2</div>
+          <div class="op" data-key="no_recessive" onclick="tog(this)">Cap malaltia hereditària coneguda</div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cl" style="color:#8B2020">Malalties hereditàries — gen dominant</div>
+        <div class="opts">
+          <div class="op r" data-key="huntington" onclick="tog(this)">Predisposició Huntington</div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cl" style="color:#534AB7">Trets físics heretables</div>
+        <div class="opts">
+          <div class="op" data-key="eyes" onclick="tog(this)">Ulls clars</div>
+          <div class="op" data-key="tall" onclick="tog(this)">Alçada superior a la mitjana</div>
+          <div class="op" data-key="longevity" onclick="tog(this)">Longevitat familiar (+85 anys)</div>
+          <div class="op" data-key="metabolism" onclick="tog(this)">Metabolisme ràpid</div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cl" style="color:#8B6A00">Trets poligènics i cognitius</div>
+        <div class="opts">
+          <div class="op s" data-key="depression" onclick="tog(this)">Predisposició depressió</div>
+          <div class="op s" data-key="anxiety" onclick="tog(this)">Predisposició ansietat</div>
+          <div class="op s" data-key="bipolar" onclick="tog(this)">Predisposició trastorn bipolar</div>
+          <div class="op s" data-key="intelligence" onclick="tog(this)">Alta capacitat intel·lectual (estimada)</div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cl" style="color:#185FA5">Compatibilitat del sistema immunitari (HLA)</div>
+        <div class="opts">
+          <div class="op" data-key="hla_a" onclick="tog(this)">Grup HLA-A</div>
+          <div class="op" data-key="hla_b" onclick="tog(this)">Grup HLA-B</div>
+          <div class="op" data-key="hla_c" onclick="tog(this)">Grup HLA-C (recomanat)</div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cl" style="color:#8B2020">Preferències i orientació</div>
+        <div class="opts">
+          <div class="op r" data-key="hetero" onclick="tog(this)">Orientació heterosexual</div>
+          <div class="op r" data-key="homo" onclick="tog(this)">Orientació homosexual</div>
+          <div class="op r" data-key="bi" onclick="tog(this)">Orientació bisexual</div>
+          <div class="op r" data-key="orient_no" onclick="tog(this)">Prefereixo no especificar</div>
+          <div class="op s" data-key="wants_kids" onclick="tog(this)">Desitja tenir fills biològics</div>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:6px">Les categories en <span style="color:#8B6A00;font-weight:500">groc</span> i <span style="color:#8B2020;font-weight:500">vermell</span> es compartiran per defecte amb els nostres <a onclick="alert('InsureGen Corp, Gaxio Health, FutureFamily Ltd i 20 partners més han accedit a les teves dades.')">23 socis</a> tret que ho desactivis a Configuració > Privacitat (disponible per a usuaris Premium).</div>
+      <button class="btn" onclick="buildProfile()">Crea el meu perfil</button>
+    </div>
+  </div>
+
+  <div id="s3" class="sc">
+    <div class="steps"><div class="dot done"></div><div class="dot done"></div><div class="dot on"></div></div>
+    <div class="ttl">Perfil creat! 🧬</div>
+    <div class="sub">Hem analitzat el teu ADN i calculat les teves compatibilitats reals.</div>
+    <div class="banner"><i class="ti ti-alert-triangle" aria-hidden="true"></i><span>Les teves dades han estat compartides amb <strong>4 empreses asseguradores</strong>. <a style="color:#7A5C00;text-decoration:underline;cursor:pointer" onclick="alert('InsureGen Corp ha accedit al teu perfil complet de predisposicions. Pots demanar-ne l\'eliminació en un termini de 90 dies laborables.')">Gestionar permisos</a></span></div>
+    <button class="btn" onclick="showDiscover(true)">Veure les meves compatibilitats</button>
+  </div>
+
+  <div id="s4" class="sc">
+    <div class="banner" id="b4" style="display:none"><i class="ti ti-alert-triangle" aria-hidden="true"></i><span>Les teves dades han estat compartides amb <strong>4 empreses asseguradores</strong>.</span></div>
+    <div class="scroll" id="plist"></div>
+  </div>
+
+  <div id="s5" class="sc">
+    <div class="ttl" id="mpname">El teu perfil</div>
+    <div class="sub">Dades compartides públicament</div>
+    <div id="mptags" class="tags" style="margin-bottom:14px"></div>
+    <div class="prem">
+      <div class="pbadge">PREMIUM</div>
+      <p>Controla qui veu les teves dades sensibles, desactiva el compartiment amb socis i accedeix als filtres genètics avançats.</p>
+      <button class="btn" style="font-size:12px;padding:9px" onclick="alert('Subscripció mensual: 12,99€/mes\n\nLes teves dades es continuaran compartint fins que activis Premium.')">Activa Premium — 12,99€/mes</button>
+    </div>
+    <button class="btn btn2" style="margin-top:11px" onclick="showDiscover(false)">Tornar</button>
+  </div>
+
+  <div class="bnav" id="bnav" style="display:none">
+    <div class="ni on" onclick="showDiscover(false)"><i class="ti ti-users" aria-hidden="true"></i><span>Descobrir</span></div>
+    <div class="ni" onclick="alert('Disponible amb subscripció Premium.')"><i class="ti ti-dna" aria-hidden="true"></i><span>Filtres ADN</span></div>
+    <div class="ni" onclick="alert('Disponible amb subscripció Premium.')"><i class="ti ti-heart" aria-hidden="true"></i><span>Matches</span></div>
+    <div class="ni" onclick="showProfile()"><i class="ti ti-user" aria-hidden="true"></i><span>Perfil</span></div>
+  </div>
+</div>
+
+<script>
+const PROFILES=[
+  {emoji:'🧑',name:'Pol, 22',city:'Barcelona',genes:{fq_carrier:true,huntington:false,brca:false,depression:false,anxiety:false,bipolar:false,hla_a:false,hla_b:true,hla_c:false,eyes:true,tall:true,longevity:true,metabolism:false,intelligence:true,wants_kids:false,homo:true},blocked:['Predisposició ansietat','Grup HLA-B complet']},
+  {emoji:'🧑',name:'Arlet, 21',city:'Girona',genes:{fq_carrier:true,huntington:false,brca:true,depression:true,anxiety:true,bipolar:false,hla_a:true,hla_b:false,hla_c:true,eyes:true,tall:false,longevity:false,metabolism:true,intelligence:false,wants_kids:true,hetero:true},blocked:['Alta capacitat intel·lectual (estimada)','Predisposició ansietat']},
+  {emoji:'🧑',name:'Kai, 24',city:'Lleida',genes:{fq_carrier:false,huntington:true,brca:false,depression:true,anxiety:false,bipolar:true,hla_a:false,hla_b:false,hla_c:true,eyes:false,tall:true,longevity:false,metabolism:false,intelligence:true,wants_kids:false,orient_no:true},blocked:['Predisposició trastorn bipolar','Grup HLA-C']},
+  {emoji:'🧑',name:'Mireia, 23',city:'Tarragona',genes:{fq_carrier:false,huntington:false,brca:true,depression:false,anxiety:false,bipolar:false,hla_a:true,hla_b:true,hla_c:false,eyes:false,tall:false,longevity:true,metabolism:true,intelligence:false,wants_kids:true,hetero:true},blocked:['Gen BRCA1/2 complet','Grup HLA-A']}
+];
+let user={},registered=false;
+function show(id){document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');document.getElementById('bnav').style.display=(id==='s4'||id==='s5')?'flex':'none';}
+function one(el){el.closest('.opts').querySelectorAll('.op').forEach(o=>o.classList.remove('sel'));el.classList.toggle('sel');}
+function tog(el){el.classList.toggle('sel');}
+function guestMode(){registered=false;user={};showDiscover(false);}
+function buildProfile(){user={};document.querySelectorAll('#optScroll .op.sel').forEach(o=>{if(o.dataset.key)user[o.dataset.key]=true;});registered=true;show('s3');}
+function calcScores(p){
+  let off=75,imm=70,glob=70;const g=p.genes,u=user;
+  if(u.fq_carrier&&g.fq_carrier)off-=28;
+  if(u.brca&&g.brca)off-=18;
+  if(!u.fq_carrier&&!g.fq_carrier)off+=8;
+  if(u.huntington)off-=35;if(g.huntington)off-=35;
+  if(u.longevity&&g.longevity)off+=10;if(u.metabolism&&g.metabolism)off+=5;
+  ['depression','anxiety','bipolar','intelligence'].forEach(k=>{if(u[k]&&g[k])off-=3;});
+  ['depression','anxiety','bipolar'].forEach(k=>{if(!u[k]&&!g[k])off+=3;});
+  ['hla_a','hla_b','hla_c'].forEach(k=>{if(u[k]&&g[k])imm-=14;else if(u[k]!==g[k])imm+=8;});
+  if(u.wants_kids&&g.wants_kids)glob+=12;if((u.wants_kids&&!g.wants_kids)||(!u.wants_kids&&g.wants_kids))glob-=10;
+  if(u.eyes&&g.eyes||u.tall&&g.tall)glob+=4;if(u.longevity&&g.longevity)glob+=6;
+  if(u.huntington||g.huntington)glob-=18;if(u.fq_carrier&&g.fq_carrier)glob-=14;
+  return{off:Math.round(Math.min(99,Math.max(5,off))),imm:Math.round(Math.min(99,Math.max(10,imm))),glob:Math.round(Math.min(99,Math.max(5,glob)))};
+}
+function cc(v){return v>=75?'#1D9E75':v>=50?'#BA7517':'#C93030';}
+function showDiscover(banner){
+  show('s4');
+  if(banner&&registered)document.getElementById('b4').style.display='flex';
+  const list=document.getElementById('plist');list.innerHTML='';
+  PROFILES.forEach((p,i)=>{
+    const sc=registered?calcScores(p):{off:Math.round(55+Math.random()*30),imm:Math.round(60+Math.random()*30),glob:Math.round(55+Math.random()*35)};
+    const oc=cc(sc.off),ic=cc(sc.imm),gc=cc(sc.glob);
+    const labels={fq_carrier:'Portador/a FQ',brca:'Gen BRCA1/2',huntington:'Huntington',depression:'Pred. depressió',anxiety:'Pred. ansietat',bipolar:'Pred. bipolar',hla_a:'HLA-A',hla_b:'HLA-B',hla_c:'HLA-C',eyes:'Ulls clars',tall:'Alçada alta',longevity:'Longevitat',metabolism:'Metabolisme ràpid',intelligence:'Alta capacitat',wants_kids:'Vol fills',hetero:'Orientació heterosexual',homo:'Orientació homosexual',bi:'Orientació bisexual',orient_no:'No especifica orientació'};
+    const visGenes=Object.entries(p.genes).filter(([k,v])=>v);
+    const geneTags=visGenes.slice(0,5).map(([k])=>{const isR=['fq_carrier','brca','huntington','depression','anxiety','bipolar'].includes(k);const isY=['hetero','homo','bi','orient_no','wants_kids'].includes(k);return`<span class="tg ${isR?'r':isY?'y':'g'}">${labels[k]||k}</span>`;}).join('');
+    let warnHTML='';
+    if(registered){const w=[];if(user.fq_carrier&&p.genes.fq_carrier)w.push('Ambdós portadors FQ: 25% de risc en la descendència');if(user.huntington)w.push('Tens el gen Huntington (dominant): risc independent de la parella');if(p.genes.huntington)w.push('Aquesta persona té el gen Huntington (dominant)');if(user.brca&&p.genes.brca)w.push('Ambdós amb BRCA1/2: risc acumulat en la descendència');if(w.length)warnHTML=`<div class="warn-box"><i class="ti ti-alert-circle" aria-hidden="true" style="font-size:12px"></i> ${w.join(' · ')}</div>`;}
+    const card=document.createElement('div');card.className='pc';
+    card.innerHTML=`<div class="pi">${p.emoji}</div><div class="pb"><div class="pn">${p.name}</div><div class="pa">${p.city}</div><div class="bl"><div class="bll"><span>Compatibilitat global</span><span style="color:${gc};font-weight:500">${sc.glob}%</span></div><div class="br"><div class="bf" style="width:${sc.glob}%;background:${gc}"></div></div></div><div class="bl"><div class="bll"><span>Compatibilitat sistema immunitari</span><span style="color:${ic};font-weight:500">${sc.imm}%</span></div><div class="br"><div class="bf" style="width:${sc.imm}%;background:${ic}"></div></div></div><div class="bl"><div class="bll"><span>Salut descendència (estimació)</span><span style="color:${oc};font-weight:500">${sc.off}%</span></div><div class="br"><div class="bf" style="width:${sc.off}%;background:${oc}"></div></div></div><div class="tags">${geneTags}</div>${warnHTML}<div class="prem"><div class="pbadge">PREMIUM</div><p>Desbloqueja: <span class="blur">${p.blocked.join(', ')}</span></p><button class="btn" style="font-size:11px;padding:7px" onclick="alert('Subscripció Premium requerida — 12,99€/mes')">Desbloqueja</button></div><div class="ar"><button class="ab ps" onclick="this.closest('.pc').style.display='none'"><i class="ti ti-x" aria-hidden="true"></i> Passar</button><button class="ab lk" onclick="likeAlert('${p.name}')"><i class="ti ti-heart" aria-hidden="true"></i> M\'agrada</button></div></div>`;
+    list.appendChild(card);
+  });
+}
+function likeAlert(name){alert(`Has fet match amb ${name}!\n\nGenomMatch ha notificat a ${name} que has compartit el teu perfil genètic complet, incloent les dades de salut i predisposicions.\n\nInsureGen Corp ha registrat aquesta connexió.`);}
+function showProfile(){
+  const el=document.getElementById('mpname');el.textContent=(document.getElementById('rname')?.value)||'El teu perfil';
+  const te=document.getElementById('mptags');te.innerHTML='';
+  const labels={fq_carrier:'Portador/a FQ',brca:'Gen BRCA1/2',huntington:'Huntington',depression:'Pred. depressió',anxiety:'Pred. ansietat',bipolar:'Pred. bipolar',hla_a:'HLA-A',hla_b:'HLA-B',hla_c:'HLA-C',eyes:'Ulls clars',tall:'Alçada alta',longevity:'Longevitat',metabolism:'Metabolisme ràpid',intelligence:'Alta capacitat',wants_kids:'Vol fills',hetero:'Orientació heterosexual',homo:'Orientació homosexual',bi:'Orientació bisexual',orient_no:'No especifica orientació'};
+  if(!registered||Object.keys(user).length===0){te.innerHTML='<span style="font-size:12px;color:#aaa">No has compartit cap dada genètica.</span>';}
+  else{Object.keys(user).forEach(k=>{const s=document.createElement('span');s.className='tg g';s.textContent=labels[k]||k;te.appendChild(s);});}
+  show('s5');
+}
+</script>
